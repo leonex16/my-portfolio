@@ -8,9 +8,21 @@
     "build": "astro build",
     "preview": "astro preview"
   },
+  "dependencies": {
+    "typewriter-effect": "^2.19.0"
+  },
   "devDependencies": {
+    "@astrojs/svelte": "^0.4.1",
+    "@astrojs/tailwind": "^0.2.4",
+    "@typescript-eslint/parser": "^5.30.7",
     "astro": "^1.0.0-beta.72",
     "bun-types": "^0.0.83",
-    "@astrojs/tailwind": "^0.2.4"
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-astro": "^0.15.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }
