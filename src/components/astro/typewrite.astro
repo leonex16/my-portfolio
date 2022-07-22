@@ -1,0 +1,13 @@
+<script>
+import { Typewriter } from '../../libs/typewriter'
+
+interface Props {
+  words: string[];
+}
+
+const { words } = Astro.props as Props;
+
+Typewriter.startEffect('#typewriter', words)
+</script>
+
+<span id="typewriter"></span>
