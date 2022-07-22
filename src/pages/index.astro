@@ -1,4 +1,7 @@
 ---
+import VideoSmartPhoneVideo from '../components/svelte/story-player/index.svelte'
+import Typewriter from '../components/astro/typewrite.astro'
+
 ---
 
 <html lang="es">
@@ -7,7 +10,89 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>Leonel Espinoza Sotelo | Desarrollador Web</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-gray-50">
+		<VideoSmartPhoneVideo client:load/>
+		<main class="h-screen flex flex-col border-4 border-solid border-red-900 hidden">
+			<article class="border-4 border-solid border-red-900 flex flex-grow">
+				<section class="border-4 border-solid border-red-900 flex-grow grid place-content-center">
+					<article class="border-4 border-solid border-red-900">
+						<header class="border-4 border-solid border-red-900" style="min-width: 700px;">
+							<h1 class="inline-block text-6xl font-bold">
+								Desarrollador
+								<Typewriter words={['Web', 'Mobile', 'Services']} />
+							</h1>
+						</header>
+						<section class="border-4 border-solid border-red-900">
+							<a class="text-lg w-full inline-block text-blue-700 transition-colors hover:text-white hover:cursor-pointer border-2 border-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5 text-center">
+								Descargar Curriculum
+							</a>
+						</section>
+					</article>
+				</section>
+				<section class="border-4 border-solid border-red-900 flex-grow  grid place-content-center">
+					<VideoSmartPhoneVideo/>
+					<footer>
+						<ul class="flex justify-between mt-2">
+							<li class="cursor-pointer">
+								<figure class="">
+									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/eye.svg" alt="Sobre Mi">
+									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
+										Sobre Mi
+									</figcaption>
+								</figure>
+							</li>
+							<li class="cursor-pointer">
+								<figure class="">
+									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/trophy.svg" alt="Logros">
+									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
+										Logros
+									</figcaption>
+								</figure>
+							</li>
+							<li class="cursor-pointer">
+								<figure class="">
+									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/keyboard.svg" alt="Tecnologías">
+									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
+										Tecnologías
+									</figcaption>
+								</figure>
+							</li>
+							<li class="cursor-pointer">
+								<figure class="">
+									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/rocket.svg" alt="Proyectos">
+									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
+										Proyectos
+									</figcaption>
+								</figure>
+							</li>
+						</ul>
+					</footer>
+				</section>
+			</article>
+			<footer class="border-4 border-solid border-red-900">
+				<ul class="flex justify-center gap-8">
+					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
+						<a href="http://" target="_blank" rel="noopener noreferrer">
+							<img src="../../public/icons/github.svg" alt="Github">
+						</a>
+					</li>
+					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
+						<a href="http://" target="_blank" rel="noopener noreferrer">
+							<img src="../../public/icons/gmail.svg" alt="Gmail">
+						</a>
+					</li>
+					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
+						<a href="http://" target="_blank" rel="noopener noreferrer">
+							<img src="../../public/icons/linkedin.svg" alt="Linkedin">
+						</a>
+					</li>
+					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
+						<a href="http://" target="_blank" rel="noopener noreferrer">
+							<img src="../../public/icons/telegram.svg" alt="Telegram">
+						</a>
+					</li>
+				</ul>
+			</footer>
+		</main>
 	</body>
 </html>
