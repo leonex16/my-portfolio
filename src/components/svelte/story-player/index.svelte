@@ -22,7 +22,7 @@
     },
   ];
 
-  let isSpeakerMuted = false;
+  let isSpeakerMuted = true;
   let videoActive = 0;
   let isLoading = false;
 
@@ -161,7 +161,7 @@
   />
   <!-- SPEAKER -->
   <div
-    class={`speake absolute top-0 left-0 h-8 w-8 ml-4 mt-6 invert cursor-pointer ${
+    class={`speaker absolute top-0 left-0 h-8 w-8 ml-4 mt-6 invert cursor-pointer ${
       isSpeakerMuted ? 'speaker--muted' : 'speaker'
     }`}
     style={`z-index: ${zIndex.speakerIcons};`}
@@ -173,10 +173,8 @@
     style={`z-index: ${zIndex.btns}; width: 50%`}
     on:click={(e) => handleAction('prev')}
   />
-  <video src=""
-  ></video>
   <video
-    class="absolute top-0 left-0 h-full object-cover"
+    class="absolute top-0 left-0 h-full object-cover  "
     src={sources[videoActive].src}
     poster={sources[videoActive].poster}
     on:loadstart={(e) => isLoading = true}
