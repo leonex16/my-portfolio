@@ -1,13 +1,16 @@
-<script>
-import { Typewriter } from '../../libs/typewriter'
-
+---
 interface Props {
   words: string[];
 }
 
 const { words } = Astro.props as Props;
+---
+<script>
+  import { Typewriter } from '../../libs/typewriter'
+  const strWords = document.getElementById('typewriter')?.dataset?.words ?? '';
+  const words = strWords.split(',');
 
-Typewriter.startEffect('#typewriter', words)
+  Typewriter.startEffect('#typewriter', words);
 </script>
 
-<span id="typewriter"></span>
+<span id="typewriter" data-words={words.join(',')}></span>
