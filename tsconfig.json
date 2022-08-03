@@ -12,6 +12,8 @@
     "isolatedModules": true,
     // "bun-types" is the important part
     "types": ["bun-types", "astro/client"],
+    // Allow imports json files in svelte files
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*.ts",
