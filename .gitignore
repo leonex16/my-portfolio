@@ -4,4 +4,3 @@ dist/
 /playwright-report/
 /playwright/.cache/
 bun.lockb
-package-lock.json
