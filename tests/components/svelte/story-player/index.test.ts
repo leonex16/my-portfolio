@@ -38,10 +38,10 @@ test('StoryPlayer', async ({ page }) => {
 
   // Test 6
   msgErrorExpected = 'Expected video to be muted'
-  await expect(speakerBtn, msgErrorExpected).toBeVisible()
+  await expect(page.locator('.speaker >> nth=0'), msgErrorExpected).not.toBeVisible()
 
   // Test 7
   msgErrorExpected = 'Expected video to be unmuted'
   await speakerBtn.click()
-  await expect(speakerBtn, msgErrorExpected).not.toBeVisible()
+  await expect(page.locator('.speaker--muted >> nth=0'), msgErrorExpected).toBeVisible()
 })
