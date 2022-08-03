@@ -1,4 +1,6 @@
 <script lang="ts">
+  import videos from '../../../data/story-player-videos.json';
+
   import ProgressBar from './components/progress-bar.svelte'
   import Loader from './components/loader.svelte'
   import SpeakerButton from './components/speaker-button.svelte'
@@ -7,26 +9,7 @@
   let videoPlayingIndex = 0;
   let isLoading = false;
 
-  const sources: StoryPlayer.Source[] = [
-    {
-      id: 'video-1',
-      src: '../../../../public/videos/video-1.mp4',
-      poster: '../../../../public/images/chrome-dino.webp',
-      progressBarRef: null,
-    },
-    {
-      id: 'video-2',
-      src: '../../../../public/videos/video-2.mp4',
-      poster: '../../../../public/images/chrome-dino.webp',
-      progressBarRef: null,
-    },
-    {
-      id: 'video-3',
-      src: '../../../../public/videos/video-3.mp4',
-      poster: '../../../../public/images/chrome-dino.webp',
-      progressBarRef: null,
-    },
-  ];
+  const sources: StoryPlayer.Source[] = videos;
 
 </script>
 
