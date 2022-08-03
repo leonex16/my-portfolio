@@ -6,7 +6,7 @@ interface Props {
 const { words } = Astro.props as Props;
 ---
 <script>
-  import { Typewriter } from '../../libs/typewriter'
+  import { Typewriter } from '../../../libs/typewriter'
   const strWords = document.getElementById('typewriter')?.dataset?.words ?? '';
   const words = strWords.split(',');
 
