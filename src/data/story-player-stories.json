@@ -1,0 +1,65 @@
+[
+  {
+    "label": "",
+    "image": "",
+    "sources": [
+      {
+        "src": "../../../../public/videos/video-4.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      },
+      {
+        "src": "../../../../public/videos/video-2.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      },
+      {
+        "src": "../../../../public/videos/video-3.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      }
+    ]
+  },
+  {
+    "label": "Sobre Mi",
+    "image": "../../public/icons/eye.svg",
+    "sources": [
+      {
+        "src": "../../../../public/videos/video-4.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      },
+      {
+        "src": "../../../../public/videos/video-3.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      }
+    ]
+  },
+  {
+    "label": "Logros",
+    "image": "../../public/icons/trophy.svg",
+    "sources": [
+      {
+        "src": "../../../../public/videos/video-3.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      },
+      {
+        "src": "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+        "poster": "../../../../public/images/chrome-dino.webp",
+        "progressBarRef": null
+      }
+    ]
+  },
+  {
+    "label": "Tecnologías",
+    "image": "../../public/icons/keyboard.svg",
+    "sources": []
+  },
+  {
+    "label": "Proyectos",
+    "image": "../../public/icons/rocket.svg",
+    "sources": []
+  }
+]
