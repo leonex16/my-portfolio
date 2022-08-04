@@ -1,107 +1,48 @@
 ---
-import VideoSmartPhoneVideo from '../components/svelte/story-player/index.svelte'
-import Typewriter from '../components/astro/typewrite.astro'
+import '../styles/global.css'
 
+import Typewriter from '../components/astro/typewriter/index.astro'
+import ParticlesBg from '../components/astro/particles-bg/index.astro'
+import NetworkLoader from '../components/astro/network-loader/index.astro'
+import DownloadButton from '../components/astro/download-button/index.astro'
+import Dock from '../components/astro/dock/index.astro'
+import StoryPlayer from '../components/svelte/story-player/index.svelte'
 ---
 
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Leonel Espinoza Sotelo | Desarrollador Web</title>
-	</head>
-	<body class="bg-gray-50">
-		<VideoSmartPhoneVideo client:load/>
-		<main class="h-screen flex flex-col border-4 border-solid border-red-900 hidden">
-			<article class="border-4 border-solid border-red-900 flex flex-grow">
-				<section class="border-4 border-solid border-red-900 flex-grow grid place-content-center">
-					<article class="border-4 border-solid border-red-900">
-						<header class="border-4 border-solid border-red-900" style="min-width: 700px;">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Leonel Espinoza Sotelo | Desarrollador Web</title>
+</head>
+
+<body class="h-screen p-4">
+	<ParticlesBg />
+	<NetworkLoader />
+	<main class="border-4 border-slate-600 rounded-xl flex flex-col h-full w-full">
+		<article class="flex grow">
+			<section class="grow">
+				<article class="flex flex-col justify-center items-center h-full w-full">
+					<section class="mt-4 grow grid place-content-center">
+						<header class="min-w-[750px] mb-8">
 							<h1 class="inline-block text-6xl font-bold">
 								Desarrollador
-								<Typewriter words={['Web', 'Mobile', 'Services']} />
+								<Typewriter words={['Web', 'Mobile' , 'Services' ]} />
 							</h1>
 						</header>
-						<section class="border-4 border-solid border-red-900">
-							<a class="text-lg w-full inline-block text-blue-700 transition-colors hover:text-white hover:cursor-pointer border-2 border-blue-700 hover:bg-blue-800 font-medium rounded-lg px-5 py-2.5 text-center">
-								Descargar Curriculum
-							</a>
-						</section>
-					</article>
-				</section>
-				<section class="border-4 border-solid border-red-900 flex-grow  grid place-content-center">
-					<VideoSmartPhoneVideo/>
-					<footer>
-						<ul class="flex justify-between mt-2">
-							<li class="cursor-pointer">
-								<figure class="">
-									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/eye.svg" alt="Sobre Mi">
-									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
-										Sobre Mi
-									</figcaption>
-								</figure>
-							</li>
-							<li class="cursor-pointer">
-								<figure class="">
-									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/trophy.svg" alt="Logros">
-									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
-										Logros
-									</figcaption>
-								</figure>
-							</li>
-							<li class="cursor-pointer">
-								<figure class="">
-									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/keyboard.svg" alt="Tecnologías">
-									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
-										Tecnologías
-									</figcaption>
-								</figure>
-							</li>
-							<li class="cursor-pointer">
-								<figure class="">
-									<img class="bg-gray-200 outline outline-orange-500 outline-offset-2 outline-4 rounded-full w-12 h-12 p-1" src="../../public/icons/rocket.svg" alt="Proyectos">
-									<figcaption class="text-center text-xs text-gray-800 mt-2 w-max border border-black">
-										Proyectos
-									</figcaption>
-								</figure>
-							</li>
-						</ul>
+						<DownloadButton downloadUrl="text" label="Descargar Curriculum" />
+					</section>
+					<footer class="relative grow-0 w-full mb-4">
+						<Dock />
 					</footer>
-				</section>
-			</article>
-			<footer class="border-4 border-solid border-red-900">
-				<ul class="flex justify-center gap-8">
-					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
-						<a href="http://" target="_blank" rel="noopener noreferrer">
-							<img src="../../public/icons/github.svg" alt="Github">
-						</a>
-					</li>
-					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
-						<a href="http://" target="_blank" rel="noopener noreferrer">
-							<img src="../../public/icons/gmail.svg" alt="Gmail">
-						</a>
-					</li>
-					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
-						<a href="http://" target="_blank" rel="noopener noreferrer">
-							<img src="../../public/icons/linkedin.svg" alt="Linkedin">
-						</a>
-					</li>
-					<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
-						<a href="http://" target="_blank" rel="noopener noreferrer">
-							<img src="../../public/icons/telegram.svg" alt="Telegram">
-						</a>
-					</li>
-				</ul>
-			</footer>
-		</main>
-	</body>
-</html>
+				</article>
+			</section>
+			<section class="grow-[2] grid place-content-center">
+				<StoryPlayer client:load />
+			</section>
+		</article>
+	</main>
+</body>
 
-<style global>
-	:root {
-		--z-index-story-player-progress-bars: 1;
-    --z-index-story-player-btns: 3;
-    --z-index-story-player-speaker-icon: 5;
-    --z-index-story-player-loader: 7;
-	}
-</style>
+</html>
