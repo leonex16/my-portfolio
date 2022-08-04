@@ -16,7 +16,7 @@
   <SpeakerButton />
 
   <div
-    class="relative shadow-lg shadow-stale-400/50 bg-slate-800 rounded-xl w-screen overflow-hidden aspect-[9/16] max-w-[360px]"
+    class="relative shadow-lg shadow-stale-400/50 bg-slate-800 rounded-xl w-screen overflow-hidden aspect-[9/16] max-w-[400px]"
   >
     <header class="relative flex gap-2 p-2 z-[var(--z-index-story-player-progress-bars)]">
       {#each $videoSourcesStore as source}

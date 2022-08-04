@@ -11,12 +11,12 @@
 
 <li class="cursor-pointer" on:click={() => handleChangeSource(story.sources)}>
 	<figure class="flex flex-col items-center">
-		<div class="bg-gradient-to-r from-green-500 to-blue-500 rounded-full w-14 h-14 p-1">
-			<div class="bg-white rounded-full h-full w-full p-2">
+		<div class="animated-gradient rounded-full w-16 h-16 p-[4px]">
+			<div class="bg-slate-900 rounded-full h-full w-full p-2">
 				<img class="h-full w-full" src={story.image} alt={story.label}>
 			</div>
 		</div>
-		<figcaption class="text-center text-xs text-gray-800 mt-2 w-max">
+		<figcaption class="text-center text-xs text-gray-800 mt-2 w-max" style="color: #f2f2f2">
 			{story.label}
 		</figcaption>
 	</figure>
