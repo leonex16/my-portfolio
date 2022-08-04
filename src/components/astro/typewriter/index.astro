@@ -3,20 +3,20 @@ interface Props {
   words: string[];
 }
 
-const { words } = Astro.props as Props;
+const { words } = Astro.props as Props
 const typewriterId = `typewriter-${new Date().getTime()}`;
 ---
 
 <script is:inline src="/libs/typewriter-js/typewriter-js.min.js"></script>
-<script is:inline define:vars={{words, typewriterId}} >
+<script is:inline define:vars={{ words, typewriterId }} >
 document.onreadystatechange = function () {
-  if (document.readyState == "interactive") {
+  if (document.readyState == 'interactive') {
     new Typewriter(`#${typewriterId}`, {
       strings: words,
       autoStart: true,
       loop: true
-    }).start();
-    document.querySelector('.Typewriter__wrapper').classList.add('text-blue-500');
+    }).start()
+    document.querySelector('.Typewriter__wrapper').classList.add('text-blue-500')
   }
 }
 </script>
