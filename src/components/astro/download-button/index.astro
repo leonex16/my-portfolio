@@ -4,28 +4,10 @@ interface Props {
 	downloadUrl: string;
 	label: string;
 }
-
 const { downloadUrl, label } = Astro.props as Props;
 ---
+
 <a class="animated-gradient inline-block text-lg font-medium rounded-lg px-5 py-2.5 text-center w-full hover:cursor-pointer"
-	download={file}>
+	href={downloadUrl} download>
 	{label}
 </a>
-
-<style>
-	.animated-gradient {
-		animation: animateBg 3s linear infinite;
-		background-image: linear-gradient(90deg, #7414b4, #34469d, #7414b4, #34469d);
-		background-size: 300% 100%;
-	}
-
-	@keyframes animateBg {
-		0% {
-			background-position: 100% 0%;
-		}
-
-		100% {
-			background-position: 0% 0%;
-		}
-	}
-</style>
