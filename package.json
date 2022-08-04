@@ -9,9 +9,6 @@
     "preview": "astro preview",
     "test": "playwright test"
   },
-  "dependencies": {
-    "typewriter-effect": "^2.19.0"
-  },
   "devDependencies": {
     "@astrojs/svelte": "^0.4.1",
     "@astrojs/tailwind": "^0.2.4",
