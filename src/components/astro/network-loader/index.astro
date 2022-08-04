@@ -1,0 +1,11 @@
+---
+import Loader from '../../svelte/loader/index.svelte'
+---
+<script>
+	document.onreadystatechange = () => {
+		if ( document.readyState === 'complete' ) document.querySelector('div[data-id="network-loader"]').remove();
+	}
+</script>
+<div data-id="network-loader" class="relative top-0 left-0 w-0 scale-50 translate-x-5 translate-y-8">
+	<Loader isLoading={true} client:visible />
+</div>
