@@ -8,4 +8,10 @@ declare namespace StoryPlayer {
 		poster: string;
 		progressBarRef: HTMLDivElement;
 	}
+
+	export interface Story {
+		label: string;
+		image: string;
+		sources: Source[];
+	}
 }
