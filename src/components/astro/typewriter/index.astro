@@ -4,13 +4,20 @@ interface Props {
 }
 
 const { words } = Astro.props as Props;
+const typewriterId = `typewriter-${new Date().getTime()}`;
 ---
-<script>
-  import { Typewriter } from '../../../libs/typewriter'
-  const strWords = document.getElementById('typewriter')?.dataset?.words ?? '';
-  const words = strWords.split(',');
 
-  Typewriter.startEffect('#typewriter', words);
+<script is:inline src="/libs/typewriter-js/typewriter-js.min.js"></script>
+<script is:inline define:vars={{words, typewriterId}} >
+document.onreadystatechange = function () {
+  if (document.readyState == "interactive") {
+    new Typewriter(`#${typewriterId}`, {
+      strings: words,
+      autoStart: true,
+      loop: true
+    }).start();
+  }
+}
 </script>
 
-<span id="typewriter" data-words={words.join(',')}></span>
+<span id={typewriterId} ></span>
