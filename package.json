@@ -3,6 +3,7 @@
   "name": "my-portfolio",
   "main": "src/index.js",
   "scripts": {
+    "phoenix": "rm -f package-lock.json && rm -rf ./node_modules && npm install --no-fund --no-audit",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
