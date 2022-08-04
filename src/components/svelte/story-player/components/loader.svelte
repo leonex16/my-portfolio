@@ -1,20 +1,26 @@
 <script lang="ts">
-  export let isLoading;
+  import { isLoadingVideoStore } from '../store';
 </script>
 
-<span class={`loader z-[var(--z-index-story-player-loader)] ${isLoading ? 'inline-block' : 'hidden'}`} />
+<span class={`
+  loader 
+  absolute
+  inset-0
+  top-[-10%]
+  box-border
+  m-auto
+  h-[48px]
+  w-[48px]
+  rounded-[50%]
+  z-[var(--z-index-story-player-loader)]
+  ${$isLoadingVideoStore ? 'inline-block' : 'hidden'}
+`} />
 
 <style>
   .loader {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
     border-top: 4px solid green;
     border-right: 4px solid transparent;
-    box-sizing: border-box;
+
     animation: rotation 1s linear infinite;
   }
 

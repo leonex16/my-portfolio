@@ -1,13 +1,16 @@
 <script lang="ts">
+  import {
+    isLoadingVideoStore,
+    isMutedAudioStore,
+    videoPlayingIndexStore,
+    videoSourcesStore,
+  } from '../store';
   import { waitFor } from '../../../../shared';
 
-  export let sources: StoryPlayer.Source[];
-  export let videoPlayingIndex: number;
-  export let isLoading: boolean;
-
-  const SOURCES_LEN = sources.length;
-
-  const toggleLoadingState = () => (isLoading = !isLoading);
+  let videoRef: HTMLVideoElement | undefined;
+  let videoPlayingIndex = $videoPlayingIndexStore;
+  let sources = $videoSourcesStore;
+  let SOURCES_LEN = sources.length;
 
   const resetProgressBar = (progressBarRef: HTMLDivElement) => {
     progressBarRef.style.transitionDuration = '';
@@ -70,33 +73,39 @@
     videoPlayingIndex += getVideoIndexToPlay(toSum, tempNextVideoIndex);
   };
 
-  const setDurationToProgressBar = (
-    totalDuration: number,
-    progressBarRef: HTMLDivElement
-  ) => {
+  const setDurationToProgressBar = (totalDuration: number, progressBarRef: HTMLDivElement) => {
     progressBarRef.style.transitionDuration = `${totalDuration}s`;
   };
 
-	const startPlayingEffectProgressBar = (progressBarRef: HTMLDivElement) => {
+  const startPlayingEffectProgressBar = (progressBarRef: HTMLDivElement) => {
     progressBarRef.style.width = `100%`;
-	}
+  };
 
   const handleDuration = async (e: SvelteEvent<HTMLVideoElement>) => {
-		const video = e.target as HTMLVideoElement;
+    const video = e.target as HTMLVideoElement;
     const totalDuration = Math.floor(video.duration);
     const currentTime = Math.floor(video.currentTime);
-		const currentProgressBarRef = sources[videoPlayingIndex].progressBarRef;
+    const currentProgressBarRef = sources[videoPlayingIndex].progressBarRef;
     const shouldChangeToNextVideo = currentTime >= totalDuration;
-		const shouldStartTransitionEffect = currentProgressBarRef.style.transitionDuration === '';
+    const shouldStartTransitionEffect = currentProgressBarRef.style.transitionDuration === '';
 
-		if ( shouldStartTransitionEffect ) {
-			setDurationToProgressBar(totalDuration, currentProgressBarRef);
-			await waitFor(550);
-			startPlayingEffectProgressBar(currentProgressBarRef)
-		}
+    if (shouldStartTransitionEffect) {
+      setDurationToProgressBar(totalDuration, currentProgressBarRef);
+      await waitFor(550);
+      startPlayingEffectProgressBar(currentProgressBarRef);
+    }
 
     if (shouldChangeToNextVideo) handleButtonAction('next');
   };
+
+  isMutedAudioStore.subscribe((isMuted) => {
+    if (videoRef === undefined) return;
+    videoRef.muted = isMuted;
+  });
+
+  videoSourcesStore.subscribe((sourcesStore) => {
+    sources = sourcesStore;
+  });
 </script>
 
 <button
@@ -107,9 +116,10 @@
   class="absolute top-0 left-0 h-full object-cover"
   src={sources[videoPlayingIndex].src}
   poster={sources[videoPlayingIndex].poster}
-  on:loadstart={toggleLoadingState}
-  on:playing={toggleLoadingState}
+  on:loadstart={() => isLoadingVideoStore.set(true)}
+  on:playing={() => isLoadingVideoStore.set(false)}
   on:timeupdate={handleDuration}
+  bind:this={videoRef}
   autoplay
   muted
   loop

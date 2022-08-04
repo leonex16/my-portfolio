@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { isMutedAudioStore } from '../store';
+
   const handleSpeaker = (e: SvelteEvent<HTMLDivElement>) => {
     e.currentTarget.classList.toggle('speaker');
+    isMutedAudioStore.update( isMuted => !isMuted );
   };
 </script>
 

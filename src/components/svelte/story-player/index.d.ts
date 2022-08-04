@@ -4,7 +4,6 @@
 
 declare namespace StoryPlayer {
 	export interface Source {
-		id: string;
 		src: string;
 		poster: string;
 		progressBarRef: HTMLDivElement;
