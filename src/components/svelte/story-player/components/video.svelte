@@ -8,9 +8,8 @@
   import { waitFor } from '../../../../shared';
 
   let videoRef: HTMLVideoElement | undefined;
-  let videoPlayingIndex = $videoPlayingIndexStore;
   let sources = $videoSourcesStore;
-  let SOURCES_LEN = sources.length;
+  $: SOURCES_LEN = sources.length;
 
   const resetProgressBar = (progressBarRef: HTMLDivElement) => {
     progressBarRef.style.transitionDuration = '';
@@ -31,8 +30,8 @@
   };
 
   const managerProgressBarsByAction = (action: 'prev' | 'next') => {
-    const prevProgressBarRef = sources[videoPlayingIndex - 1]?.progressBarRef;
-    const currentProgressBarRef = sources[videoPlayingIndex].progressBarRef;
+    const prevProgressBarRef = sources[$videoPlayingIndexStore - 1]?.progressBarRef;
+    const currentProgressBarRef = sources[$videoPlayingIndexStore].progressBarRef;
 
     if (action === 'prev') resetProgressBar(currentProgressBarRef);
     if (action === 'prev' && prevProgressBarRef) resetProgressBar(prevProgressBarRef);
@@ -65,12 +64,12 @@
 
   const handleButtonAction = (action: 'prev' | 'next') => {
     let toSum = action === 'prev' ? -1 : 1;
-    const tempNextVideoIndex = videoPlayingIndex + toSum;
+    const tempNextVideoIndex = $videoPlayingIndexStore + toSum;
 
     managerProgressBarsByAction(action);
     managerProgressBarsByVideoIndex(tempNextVideoIndex);
 
-    videoPlayingIndex += getVideoIndexToPlay(toSum, tempNextVideoIndex);
+    videoPlayingIndexStore.update( videoPlayingIndex => videoPlayingIndex + getVideoIndexToPlay(toSum, tempNextVideoIndex) );
   };
 
   const setDurationToProgressBar = (totalDuration: number, progressBarRef: HTMLDivElement) => {
@@ -82,10 +81,13 @@
   };
 
   const handleDuration = async (e: SvelteEvent<HTMLVideoElement>) => {
+    const currentProgressBarRef = sources[$videoPlayingIndexStore].progressBarRef;
     const video = e.target as HTMLVideoElement;
     const totalDuration = Math.floor(video.duration);
     const currentTime = Math.floor(video.currentTime);
-    const currentProgressBarRef = sources[videoPlayingIndex].progressBarRef;
+    
+    if ( Boolean( currentProgressBarRef ) === false  ) return;
+
     const shouldChangeToNextVideo = currentTime >= totalDuration;
     const shouldStartTransitionEffect = currentProgressBarRef.style.transitionDuration === '';
 
@@ -105,6 +107,7 @@
 
   videoSourcesStore.subscribe((sourcesStore) => {
     sources = sourcesStore;
+    videoPlayingIndexStore.set(0)
   });
 </script>
 
@@ -114,8 +117,8 @@
 />
 <video
   class="absolute top-0 left-0 h-full object-cover"
-  src={sources[videoPlayingIndex].src}
-  poster={sources[videoPlayingIndex].poster}
+  src={sources[$videoPlayingIndexStore].src}
+  poster={sources[$videoPlayingIndexStore].poster}
   on:loadstart={() => isLoadingVideoStore.set(true)}
   on:playing={() => isLoadingVideoStore.set(false)}
   on:timeupdate={handleDuration}
