@@ -42,3 +42,9 @@
     background-position: 0% 0%;
   }
 }
+
+.particles-js-canvas-el {
+  object-fit: cover;
+  height: 100vh !important;
+  width: 100vw !important;
+}

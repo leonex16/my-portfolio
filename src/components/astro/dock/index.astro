@@ -6,7 +6,7 @@ import links from '../../../data/dock-items.json';
 <ul class="absolute inset-0 h-max top-[-5rem] flex justify-center gap-8 border-4 border-slate-600 w-max rounded-xl m-auto py-2 px-4">
 	{
 	links.map(link => (
-	<li class="w-14 h-14 transition hover:scale-150 hover:-translate-y-2">
+	<li class="transition w-12 h-12 xl:w-14 xl:h-14 hover:scale-150 hover:-translate-y-2">
 		<a href={link.href} target="_blank" rel="noopener noreferrer">
 			<img src={link.icon} alt={link.altText} />
 		</a>

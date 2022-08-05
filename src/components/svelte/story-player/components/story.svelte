@@ -11,7 +11,7 @@
 
 <li class="cursor-pointer" on:click={() => handleChangeSource(story.sources)}>
   <figure class="flex flex-col items-center">
-    <div class="animated-gradient rounded-full w-16 h-16 p-[4px]">
+    <div class="animated-gradient rounded-full p-[4px] w-14 h-14 xl:w-16 xl:h-16">
       <div class="bg-slate-900 rounded-full h-full w-full p-2">
         <img class="h-full w-full" src={story.image} alt={story.label} />
       </div>

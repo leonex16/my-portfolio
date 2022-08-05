@@ -12,11 +12,11 @@
   let [_, ...stories] = storiesData;
 </script>
 
-<article class="relative">
+<article class="relative w-screen max-w-[280px] xl:max-w-[320px] 2xl:max-w-[412px]">
   <SpeakerButton />
 
   <div
-    class="relative shadow-stale-400/20 shadow-lg rounded-xl w-screen overflow-hidden aspect-[9/16] max-w-[400px]"
+    class="relative shadow-stale-400/20 shadow-lg rounded-xl overflow-hidden aspect-[9/16]"
   >
     <Loader isLoading={$isLoadingVideoStore} />
     <header class="relative flex gap-2 p-2 z-[var(--z-index-story-player-progress-bars)]">
