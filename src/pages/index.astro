@@ -1,28 +1,15 @@
 ---
 import '../styles/global.css'
 
+import BaseLayout from '../layout/base.astro'
 import NoResponsiveDialog from '../components/astro/no-responsive-dialog/index.astro'
-import NetworkLoader from '../components/astro/network-loader/index.astro'
-import ParticlesBg from '../components/astro/particles-bg/index.astro'
 import Portfolio from '../components/astro/portfolio/index.astro'
 
 ---
 
-<html lang="es">
-
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>Leonel Espinoza Sotelo | Desarrollador Web</title>
-</head>
-
-<body class="h-screen p-4 overflow-hidden">
-	<ParticlesBg />
-	<NetworkLoader />
-	<main class="border-4 border-slate-600 rounded-xl flex flex-col h-full w-full">
-		<NoResponsiveDialog client:visible />
-		<Portfolio client:visible />
-	</main>
-</body>
-
-</html>
+	<BaseLayout>
+		<main class="border-4 border-slate-600 rounded-xl flex flex-col h-full w-full">
+			<NoResponsiveDialog client:visible />
+			<Portfolio client:visible />
+		</main>
+	</BaseLayout>
