@@ -1,0 +1,25 @@
+---
+import IAm from '../i-am/index.astro'
+import DownloadButton from '../download-button/index.astro'
+import Dock from '../dock/index.astro'
+
+import StoryPlayer from '../../svelte/story-player/index.svelte'
+---
+<article class="grow hidden lg:flex">
+	<section class="grow">
+		<article class="flex flex-col justify-center items-center h-full w-full">
+			<section class="mt-4 grow grid place-content-center">
+				<header class="min-w-[550px] mb-2 xl:min-w-[750px] xl:mb-8">
+					<IAm />
+				</header>
+				<DownloadButton downloadUrl="text" label="Descargar Curriculum" />
+			</section>
+			<footer class="relative grow-0 w-full mb-4">
+				<Dock />
+			</footer>
+		</article>
+	</section>
+	<section class="grow-[2] grid place-content-center">
+		<StoryPlayer client:visible />
+	</section>
+</article>
