@@ -1,0 +1,96 @@
+---
+import wavingHandSvg from '../../../../public/icons/waving-hand.svg'
+import DownloadButton from '../download-button/index.astro'
+
+const paragraphs = [
+	'Dime Leo 🤓 lamento informarte que el sitio se encuentra siendo desarrollado para este tamaño de pantalla.',
+	'Sin embargo, te invito a abrir este mismo sitio en un ordenador para <strong>vivir la experiencia completa</strong> ✨',
+	'Mientras enciendes tu ordenador 👀, te comento que me dedico principalmente al <strong>desarrollo de aplicaciones web, mobile y/o services</strong>. He trabajado para el <strong>Ministerio de Salud</strong>, <strong>UC Catolica</strong>, <strong>AMF</strong>, entre otros 👌🏻',
+	'Para mayor información te doy acceso a mi curriculum presionado el botón de aquí abajo 👇🏻',
+]
+---
+
+<article class="place-content-center h-full w-full grid lg:hidden">
+	<section class="py-4 px-6">
+		<h1 class="text-center font-bold text-2xl">
+			<span class="block xs:inline">🚧</span>
+			En Construcción
+			<span class="block xs:inline">🚧</span>
+		</h1>
+		<img class="animate-wave w-14 h-14 m-auto" src={wavingHandSvg} alt="¡Hola!">
+		<div class="overflow-auto scroll-shadows max-h-[85vw] sm:max-h-[none]">
+			{
+				paragraphs.map( paragraph => (
+					<p class="text-lg max-w-[65ch] leading-loose" set:html={paragraph} />
+				))
+			}
+		</div>
+		<footer class="mt-6 xs:mt-8">
+			<DownloadButton downloadUrl="text" label="Descargar Curriculum" />
+			<p class="text-sm italic mt-2 text-center xs:text-right">
+				🍀 Que tengas un excelente día 🍀
+			</p>
+		</footer>
+	</section>
+</article>
+<style>
+	.animate-wave {
+		-webkit-animation: wave 2.5s ease-in-out infinite;
+		animation: wave 2.5s ease-in-out infinite;
+	}
+
+	@keyframes wave {
+		0% {
+			transform: rotate(0.0deg);
+		}
+
+		10% {
+			transform: rotate(14.0deg);
+		}
+
+		20% {
+			transform: rotate(-8.0deg);
+		}
+
+		30% {
+			transform: rotate(14.0deg);
+		}
+
+		40% {
+			transform: rotate(-4.0deg);
+		}
+
+		50% {
+			transform: rotate(10.0deg);
+		}
+
+		60% {
+			transform: rotate(0.0deg);
+		}
+
+		100% {
+			transform: rotate(0.0deg);
+		}
+	}
+
+	/* https://css-tricks.com/books/greatest-css-tricks/scroll-shadows */
+	.scroll-shadows {
+		background:
+			/* Shadow Cover TOP */
+			linear-gradient(#1f2942 10%,
+				#0F172A);
+
+		background-repeat: no-repeat;
+		background-size: 100% 40px;
+		background-attachment: local;
+	}
+
+	@media (min-width: 524px) {
+		.scroll-shadows {
+			background: none;
+			background-repeat: no-repeat;
+			background-size: 100% 40px;
+			background-attachment: local;
+		}
+	}
+</style>
