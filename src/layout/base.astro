@@ -1,0 +1,22 @@
+---
+import NetworkLoader from '../components/astro/network-loader/index.astro'
+import ParticlesBg from '../components/astro/particles-bg/index.astro'
+
+const title = 'Leonel Espinoza Sotelo | Desarrollador Web'
+---
+
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>{title}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="h-screen p-4 overflow-hidden">
+	<ParticlesBg />
+	<NetworkLoader />
+	<slot />
+</body>
+
+</html>
