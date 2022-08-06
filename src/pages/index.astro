@@ -1,12 +1,11 @@
 ---
 import '../styles/global.css'
 
-import Typewriter from '../components/astro/typewriter/index.astro'
-import ParticlesBg from '../components/astro/particles-bg/index.astro'
+import NoResponsiveDialog from '../components/astro/no-responsive-dialog/index.astro'
 import NetworkLoader from '../components/astro/network-loader/index.astro'
-import DownloadButton from '../components/astro/download-button/index.astro'
-import Dock from '../components/astro/dock/index.astro'
-import StoryPlayer from '../components/svelte/story-player/index.svelte'
+import ParticlesBg from '../components/astro/particles-bg/index.astro'
+import Portfolio from '../components/astro/portfolio/index.astro'
+
 ---
 
 <html lang="es">
@@ -17,31 +16,12 @@ import StoryPlayer from '../components/svelte/story-player/index.svelte'
 	<title>Leonel Espinoza Sotelo | Desarrollador Web</title>
 </head>
 
-<body class="h-screen p-4">
+<body class="h-screen p-4 overflow-hidden">
 	<ParticlesBg />
 	<NetworkLoader />
 	<main class="border-4 border-slate-600 rounded-xl flex flex-col h-full w-full">
-		<article class="flex grow">
-			<section class="grow">
-				<article class="flex flex-col justify-center items-center h-full w-full">
-					<section class="mt-4 grow grid place-content-center">
-						<header class="min-w-[750px] mb-8">
-							<h1 class="inline-block text-6xl font-bold">
-								Desarrollador
-								<Typewriter words={['Web', 'Mobile', 'Services']} />
-							</h1>
-						</header>
-						<DownloadButton downloadUrl="text" label="Descargar Curriculum" />
-					</section>
-					<footer class="relative grow-0 w-full mb-4">
-						<Dock />
-					</footer>
-				</article>
-			</section>
-			<section class="grow-[2] grid place-content-center">
-				<StoryPlayer client:load />
-			</section>
-		</article>
+		<NoResponsiveDialog client:visible />
+		<Portfolio client:visible />
 	</main>
 </body>
 
