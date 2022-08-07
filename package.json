@@ -5,9 +5,8 @@
   "scripts": {
     "phoenix": "rm -f package-lock.json && rm -rf ./node_modules && npm install --no-fund --no-audit",
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro preview",
     "build": "astro build",
-    "preview": "astro preview",
     "test": "playwright test",
     "eslint": "eslint --ext .js,.ts,.astro,.svelte --fix --fix-type problem,suggestion,layout ./src/"
   },
