@@ -4,6 +4,9 @@ import DownloadButton from '../download-button/index.astro'
 import Dock from '../dock/index.astro'
 
 import StoryPlayer from '../../svelte/story-player/index.svelte'
+
+import resumeDocFile from '../../../../public/docs/espinoza-leonel-cv-es.pdf';
+
 ---
 <article class="grow hidden lg:flex">
 	<section class="grow">
@@ -12,7 +15,7 @@ import StoryPlayer from '../../svelte/story-player/index.svelte'
 				<header class="min-w-[550px] mb-2 xl:min-w-[750px] xl:mb-8">
 					<IAm />
 				</header>
-				<DownloadButton downloadUrl="text" label="Descargar Curriculum" />
+				<DownloadButton downloadUrl={resumeDocFile} label="Descargar Curriculum" />
 			</section>
 			<footer class="relative grow-0 w-full mb-4">
 				<Dock />
