@@ -27,11 +27,11 @@ const config: PlaywrightTestConfig = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
   /** workers: process.env.CI ? 1 : undefined, */
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI ? 'github' : 'list',
 
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -46,15 +46,45 @@ const config: PlaywrightTestConfig = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'Chromium',
+      name: 'Chrome 1366x768',
       use: {
-        ...devices['Desktop Chrome']
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1366, height: 768 } // WXGA
       }
     },
     {
-      name: 'Mobile Chrome',
+      name: 'Chrome 1280x720',
       use: {
-        ...devices['Galaxy S9+']
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1280, height: 720 } // HD
+      }
+    },
+    {
+      name: 'Chrome 1024x768',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1024, height: 768 } // XGA
+      }
+    },
+    {
+      name: 'Chrome 360×800',
+      use: {
+        ...devices['iPhone 11'],
+        viewport: { width: 360, height: 800 }
+      }
+    },
+    {
+      name: 'Chrome 414×896',
+      use: {
+        ...devices['Galaxy S9+'],
+        viewport: { width: 414, height: 896 }
+      }
+    },
+    {
+      name: 'Chrome 280x653',
+      use: {
+        ...devices['Pixel 2'],
+        viewport: { width: 280, height: 653 }
       }
     }
   ]
