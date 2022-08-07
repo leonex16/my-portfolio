@@ -1,22 +1,22 @@
 [
   {
     "href": "https://github.com/leonex16",
-    "icon": "../../../public/icons/github.svg",
+    "icon": "icons/github.svg",
     "altText": "Github"
   },
   {
     "href": "mailto:leonelantonio569@gmail.com",
-    "icon": "../../../public/icons/gmail.svg",
+    "icon": "icons/gmail.svg",
     "altText": "Gmail"
   },
   {
     "href": "https://www.linkedin.com/in/leonelespinoza",
-    "icon": "../../../public/icons/linkedin.svg",
+    "icon": "icons/linkedin.svg",
     "altText": "Linkedin"
   },
   {
     "href": "https://t.me/leo_esp_sot",
-    "icon": "../../../public/icons/telegram.svg",
+    "icon": "icons/telegram.svg",
     "altText": "Telegram"
   }
 ]
