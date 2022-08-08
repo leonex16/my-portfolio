@@ -13,7 +13,7 @@ test.describe('Portfolio', () => {
     const errorMsgExpected = 'The video progress bar expected to be empty when starting to load the video'
     const firstVideoProgressBar = page.locator('div:nth-child(2) > .overflow-hidden > .bg-slate-100 >> nth=0')
 
-    expect(await firstVideoProgressBar.getAttribute('style'), errorMsgExpected).toBe('width: 0%')
+    expect(await firstVideoProgressBar.getAttribute('style'), errorMsgExpected).toBe('width: 100%')
   })
 
   test('should video source changes when the user pressed the next button', async ({ page }) => {
