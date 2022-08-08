@@ -4,9 +4,9 @@ import ParticlesBg from '../components/astro/particles-bg/index.astro'
 
 import openGraphImage from '../../public/images/open-graph.jpg'
 
-const TITLE = 'Leonel Espinoza Sotelo | Desarrollador [Web | Mobile 	| Services]'
-const DESCRIPTION = 'Leonel Espinoza desarrollador de aplicaciones web, mobile y/o services, que ha desempeñado sus funciones para el Ministerio de Salud, UC Catolica, entre otros 👌🏻'
-const URL = 'https://leonel-espinoza.dev';
+const TITLE = 'Leonel Espinoza Sotelo | Desarrollador Web, Mobile, Services'
+const DESCRIPTION = 'que ha desempeñado sus funciones para el Ministerio de Salud, UC Catolica, entre otros 👌🏻' // CHANGE DESCRPTION
+const URL = 'https://leonel-espinoza.tiiny.site';
 
 ---
 
@@ -36,9 +36,17 @@ const URL = 'https://leonel-espinoza.dev';
 	<meta property="og:site_name" content="Portafolio Leonel Espinoza">
 	<meta property="og:locale" content="es_CL">
 	<meta property="article:author" content="Leonel Espinoza Sotelo">
+
+	<script>
+		const setScreenMinHeight = () => document.documentElement.style.setProperty('--h-screen', `${window.innerHeight}px`)
+	
+		window.addEventListener('resize', setScreenMinHeight)
+	
+		setScreenMinHeight()
+	</script>
 </head>
 
-<body class="h-screen p-4 overflow-hidden">
+<body class="p-4 h-0 overflow-y-hidden" style="min-height: var(--h-screen);">
 	<ParticlesBg />
 	<NetworkLoader />
 	<slot />
