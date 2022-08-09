@@ -24,10 +24,10 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-n": "^15.2.4",
-    "eslint-plugin-promise": "^6.0.0",
-    "ts-node-dev": "^2.0.0"
+    "eslint-plugin-promise": "^6.0.0"
   },
   "dependencies": {
+    "ts-node-dev": "^2.0.0",
     "aws-sdk": "^2.1189.0",
     "dotenv": "^16.0.1",
     "mime-types": "^2.1.35"
