@@ -66,3 +66,29 @@ jobs:
     - name: Run playwright tests
       run: npm run test
 
+  deploy:
+    needs:
+      - build
+      - test
+    
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version: '16.x'
+
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+          name: dist
+
+      - name: Install production dependencies
+      - run: npm install --production --no-fund --no-audit
+
+      - name: Deploy
+        run: npm run deploy
+
