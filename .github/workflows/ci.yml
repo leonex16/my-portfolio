@@ -65,7 +65,7 @@ jobs:
       run: npm install @playwright/test --no-fund --no-audit
 
     - name: Install playwright browsers
-      run: npx playwright install-deps
+      run: npx playwright install-deps chrome 
 
     - name: Run playwright tests
       run: npm run test
