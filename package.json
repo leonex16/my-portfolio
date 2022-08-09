@@ -8,7 +8,8 @@
     "start": "astro preview",
     "build": "astro build",
     "test": "playwright test",
-    "eslint": "eslint --ext .js,.ts,.astro,.svelte --fix --fix-type problem,suggestion,layout ./src/"
+    "eslint": "eslint --ext .js,.ts,.astro,.svelte --fix --fix-type problem,suggestion,layout ./src/",
+    "deploy": "tsnd --quiet src/scripts/upload-to-s3.ts dist"
   },
   "devDependencies": {
     "@astrojs/svelte": "^0.4.1",
@@ -24,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",
+    "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
     "aws-sdk": "^2.1189.0",
