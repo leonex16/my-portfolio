@@ -14,9 +14,11 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  generate_artifact:
+  build:
+    timeout-minutes: 1
+
     runs-on: ubuntu-18.04
-    
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,16 +32,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
       - uses: actions/upload-artifact@v3
         with:
-         name: artifacts
-         path: |
-          node_modules/
-          dist/
+         path: dist
+         name: dist
 
   test:
+    timeout-minutes: 5
+
     needs:
-      - generate_artifact
+      - build
 
     runs-on: ubuntu-18.04
 
@@ -52,21 +57,24 @@ jobs:
         node-version: '16.x'
 
     - uses: actions/download-artifact@v3
+      with:
+        path: dist
+        name: dist
 
-    - name: Display structure of downloaded files
-      run: ls -R
+    - name: Install @playwright/test
+      run: npm install @playwright/test --no-fund --no-audit
 
-    # - name: Install @playwright/test
-    #   run: npm install @playwright/test --no-fund --no-audit
+    - name: Install playwright browsers
+      run: npx playwright install --with-deps
 
-    # - name: Install playwright browsers
-    #   run: npx playwright install --with-deps
-
-    # - name: Run playwright tests
-    #   run: npm run test
+    - name: Run playwright tests
+      run: npm run test
 
   deploy:
+    timeout-minutes: 2
+
     needs:
+      - build
       - test
     
     runs-on: ubuntu-18.04
@@ -85,12 +93,12 @@ jobs:
         node-version: '16.x'
 
     - uses: actions/download-artifact@v3
+      with:
+        path: dist
+        name: dist
 
-    - name: Display structure of downloaded files
-      run: ls -R
-
-    - name: Install production dependencies
-      run: npm install --omit=dev --no-fund --no-audit
+    - name: Install dependencies
+      run: npm install ci
 
     - name: Deploy
       run: npm run deploy
