@@ -73,6 +73,11 @@ jobs:
     
     runs-on: ubuntu-18.04
 
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+
     steps:
     - uses: actions/checkout@v3
 
@@ -87,7 +92,7 @@ jobs:
         name: dist
 
     - name: Install production dependencies
-      run: npm install --production --no-fund --no-audit
+      run: npm install --omit=dev --no-fund --no-audit
 
     - name: Deploy
       run: npm run deploy
