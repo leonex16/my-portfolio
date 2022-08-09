@@ -74,21 +74,21 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          node-version: '16.x'
+    - uses: actions/setup-node@v3
+      with:
+        cache: 'npm'
+        node-version: '16.x'
 
-      - uses: actions/download-artifact@v3
-        with:
-          path: dist
-          name: dist
+    - uses: actions/download-artifact@v3
+      with:
+        path: dist
+        name: dist
 
-      - name: Install production dependencies
-      - run: npm install --production --no-fund --no-audit
+    - name: Install production dependencies
+    - run: npm install --production --no-fund --no-audit
 
-      - name: Deploy
-        run: npm run deploy
+    - name: Deploy
+      run: npm run deploy
 
