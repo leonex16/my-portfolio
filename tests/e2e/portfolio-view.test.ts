@@ -63,15 +63,27 @@ test.describe('Portfolio', () => {
     expect(await firstVideoProgressBar.getAttribute('style'), errorMsgExpected).toBe('width: 0%;')
   })
 
-  test('should video to be muted', async ({ page }) => {
+  test('should video to be muted on load page', async ({ page }) => {
     const errorMsgExpected = 'Video expected to be muted on page load'
+    const video = page.locator('video >> nth=0')
+    // eslint-disable-next-line no-undef
+    const isMuted = await video.evaluate(($video: HTMLVideoElement) => $video.muted)
 
+    expect(isMuted).toBe(true)
     await expect(page.locator('.speaker >> nth=0'), errorMsgExpected).not.toBeVisible()
   })
 
-  test('should video to be unmuted', async ({ page }) => {
+  test('should video to be unmuted when the user clicks', async ({ page }) => {
     const errorMsgExpected = 'Video expected to be unmuted when the user has pressed the button'
+    const video = page.locator('video >> nth=0')
+    const speakerMuted = page.locator('.speaker--muted >> nth=0')
+    let isMuted = true
 
+    await speakerMuted.click()
+    // eslint-disable-next-line no-undef
+    isMuted = await video.evaluate(($video: HTMLVideoElement) => $video.muted)
+
+    expect(isMuted).toBe(false)
     await expect(page.locator('.speaker--muted >> nth=0'), errorMsgExpected).toBeVisible()
   })
 })
