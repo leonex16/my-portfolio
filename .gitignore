@@ -3,5 +3,7 @@ dist/
 /test-results/
 /playwright-report/
 /playwright/.cache/
+scripts/target/
 bun.lockb
 .env
+config.toml
