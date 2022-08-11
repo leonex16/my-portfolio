@@ -14,9 +14,9 @@
 
 <style>
   .speaker {
-    background-image: url('../../../../public/icons/speaker-unmuted.svg') !important;
+    background-image: url('icons/speaker-unmuted.svg') !important;
   }
   .speaker--muted {
-    background-image: url('../../../../public/icons/speaker-muted.svg');
+    background-image: url('icons/speaker-muted.svg');
   }
 </style>

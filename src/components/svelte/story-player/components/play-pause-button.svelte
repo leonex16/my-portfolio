@@ -14,7 +14,7 @@
 
 <style>
   .play-pause-icon {
-    background-image: url('../../../../public/icons/play-pause.svg');
+    background-image: url('icons/play-pause.svg');
     background-repeat: no-repeat;
     background-size: contain;
     height: 64px;
