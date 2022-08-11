@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
-    isLoadingVideoStore,
+    isVideoPlayingStore,
+    isVideoLoadingStore,
     isMutedAudioStore,
     videoPlayingIndexStore,
     videoSourcesStore,
@@ -69,33 +70,54 @@
     managerProgressBarsByAction(action);
     managerProgressBarsByVideoIndex(tempNextVideoIndex);
 
-    videoPlayingIndexStore.update( videoPlayingIndex => videoPlayingIndex + getVideoIndexToPlay(toSum, tempNextVideoIndex) );
+    videoPlayingIndexStore.update(
+      (videoPlayingIndex) => videoPlayingIndex + getVideoIndexToPlay(toSum, tempNextVideoIndex)
+    );
   };
 
-  const setDurationToProgressBar = (totalDuration: number, progressBarRef: HTMLDivElement) => {
-    progressBarRef.style.transitionDuration = `${totalDuration}s`;
+  const setDurationToProgressBar = (totalDuration: string, progressBarRef: HTMLDivElement) => {
+    progressBarRef.style.transitionDuration = totalDuration;
   };
 
-  const startPlayingEffectProgressBar = (progressBarRef: HTMLDivElement) => {
-    progressBarRef.style.width = `100%`;
+  const setWidthProgressBar = (progressBarWidth: string, progressBarRef: HTMLDivElement) => {
+    progressBarRef.style.width = progressBarWidth;
   };
 
-  const handleDuration = async (e: SvelteEvent<HTMLVideoElement>) => {
+  const startTransitionEffectOnProgressBar = async (
+    totalDuration: string,
+    progressBarRef: HTMLDivElement
+  ) => {
+    setDurationToProgressBar(totalDuration, progressBarRef);
+    await waitFor(550);
+    setWidthProgressBar('100%', progressBarRef);
+  };
+
+  const stopTransitionEffectOnProgressBar = async (
+    currentProgressBarWidth: string,
+    progressBarRef: HTMLDivElement
+  ) => {
+    setDurationToProgressBar('none', progressBarRef);
+    setWidthProgressBar(currentProgressBarWidth, progressBarRef);
+  };
+
+  const getDurationData = () => {
+    if (videoRef === undefined) return;
+    const totalDuration = Math.floor(videoRef.duration);
+    const currentTime = Math.floor(videoRef.currentTime);
+
+    return { currentTime, totalDuration };
+  };
+
+  const handleDuration = async () => {
     const currentProgressBarRef = sources[$videoPlayingIndexStore].progressBarRef;
-    const video = e.target as HTMLVideoElement;
-    const totalDuration = Math.floor(video.duration);
-    const currentTime = Math.floor(video.currentTime);
-    
-    if ( Boolean( currentProgressBarRef ) === false  ) return;
+    const { currentTime, totalDuration } = getDurationData();
+
+    if (Boolean(currentProgressBarRef) === false) return;
 
     const shouldChangeToNextVideo = currentTime >= totalDuration;
     const shouldStartTransitionEffect = currentProgressBarRef.style.transitionDuration === '';
 
-    if (shouldStartTransitionEffect) {
-      setDurationToProgressBar(totalDuration, currentProgressBarRef);
-      await waitFor(550);
-      startPlayingEffectProgressBar(currentProgressBarRef);
-    }
+    if (shouldStartTransitionEffect) await startTransitionEffectOnProgressBar(`${totalDuration}s`, currentProgressBarRef);
 
     if (shouldChangeToNextVideo) handleButtonAction('next');
   };
@@ -105,9 +127,24 @@
     videoRef.muted = isMuted;
   });
 
+  isVideoPlayingStore.subscribe(async (isPlaying) => {
+    if (videoRef === undefined) return;
+    const { currentTime, totalDuration } = getDurationData();
+    const currentProgressBarRef = sources[$videoPlayingIndexStore].progressBarRef;
+    const currentProgressBarWidth = (currentTime * 160) / totalDuration;
+
+    if (isPlaying) {
+      await startTransitionEffectOnProgressBar(`${totalDuration - currentTime}s`, currentProgressBarRef)
+      videoRef.play();
+    } else {
+      stopTransitionEffectOnProgressBar(`${currentProgressBarWidth}%`, currentProgressBarRef);
+      videoRef.pause();
+    }
+  });
+
   videoSourcesStore.subscribe((sourcesStore) => {
     sources = sourcesStore;
-    videoPlayingIndexStore.set(0)
+    videoPlayingIndexStore.set(0);
   });
 </script>
 
@@ -119,8 +156,8 @@
   class="absolute top-0 left-0 h-full object-cover"
   src={sources[$videoPlayingIndexStore].src}
   poster={sources[$videoPlayingIndexStore].poster}
-  on:loadstart={() => isLoadingVideoStore.set(true)}
-  on:playing={() => isLoadingVideoStore.set(false)}
+  on:loadstart={() => isVideoLoadingStore.set(true)}
+  on:playing={() => isVideoLoadingStore.set(false)}
   on:timeupdate={handleDuration}
   bind:this={videoRef}
   autoplay
