@@ -6,36 +6,6 @@ on:
 
 jobs:
 
-  deploy_test:
-    timeout-minutes: 2
-    
-    runs-on: ubuntu-22.04
-
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - uses: actions/setup-node@v3
-      with:
-        cache: 'npm'
-        node-version: '16.x'
-
-    - name: Deploy
-      run: npm run deploy:rust
-
-  avoid_reduncy:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Cancel previous builds
-        uses: styfle/cancel-workflow-action@0.10.0
-        with:
-          access_token: ${{ github.token }}
-
   build:
     timeout-minutes: 1
 
@@ -109,19 +79,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v3
-      with:
-        cache: 'npm'
-        node-version: '16.x'
-
     - uses: actions/download-artifact@v3
       with:
         path: dist
         name: dist
 
-    - name: Install dependencies
-      run: npm install ci
-
     - name: Deploy
-      run: npm run deploy
+      run: ./scripts/bin upload-directory-to-s3 dist/
 
