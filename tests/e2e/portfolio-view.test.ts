@@ -76,14 +76,40 @@ test.describe('Portfolio', () => {
   test('should video to be unmuted when the user clicks', async ({ page }) => {
     const errorMsgExpected = 'Video expected to be unmuted when the user has pressed the button'
     const video = page.locator('video >> nth=0')
-    const speakerMuted = page.locator('.speaker--muted >> nth=0')
+    const speakerMutedButton = page.locator('.speaker--muted >> nth=0')
     let isMuted = true
 
-    await speakerMuted.click()
+    await speakerMutedButton.click()
     // eslint-disable-next-line no-undef
     isMuted = await video.evaluate(($video: HTMLVideoElement) => $video.muted)
 
     expect(isMuted).toBe(false)
-    await expect(page.locator('.speaker--muted >> nth=0'), errorMsgExpected).toBeVisible()
+    await expect(speakerMutedButton, errorMsgExpected).toBeVisible()
+  })
+
+  test('should video to be playing on load page', async ({ page }) => {
+    // FIXME: Can not check if video is playing because the resources ( videos ) not loading...
+    const errorMsgExpected = 'Video expected to be muted on page load'
+    // const video = page.locator('video >> nth=0')
+    // eslint-disable-next-line no-undef
+    // const isPaused = await video.evaluate(($video: HTMLVideoElement) => $video.paused)
+
+    // expect(isPaused).toBe(false)
+    await expect(page.locator('.play-pause-icon'), errorMsgExpected).not.toBeVisible()
+  })
+
+  test.only('should video pause when the user clicks', async ({ page }) => {
+    // FIXME: Can not check if video is playing because the resources ( videos ) not loading...
+    const errorMsgExpected = 'Video expected to be unmuted when the user has pressed the button'
+    // const video = page.locator('video >> nth=0')
+    const playPauseButton = page.locator('.play-pause-icon')
+    // let isPaused = false
+
+    await playPauseButton.click()
+    // eslint-disable-next-line no-undef
+    // isPaused = await video.evaluate(($video: HTMLVideoElement) => $video.paused)
+
+    // expect(isPaused).toBe(true)
+    await expect(playPauseButton, errorMsgExpected).toBeVisible()
   })
 })
