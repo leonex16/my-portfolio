@@ -10,7 +10,7 @@
     "test": "playwright test",
     "eslint": "eslint --ext .js,.ts,.astro,.svelte --fix --fix-type problem,suggestion,layout ./src/",
     "deploy": "tsnd --quiet src/scripts/upload-to-s3.ts dist",
-    "deploy:rust": "./scripts/bin upload-directory-to-s3 dist/"
+    "deploy:rust": "./scripts/bin upload-directory-to-s3 public/"
   },
   "devDependencies": {
     "@astrojs/svelte": "^0.4.1",
