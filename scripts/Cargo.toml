@@ -1,0 +1,21 @@
+[package]
+name = "scripts"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.scripts]
+dev = "cargo watch --clear --quiet -w src -x run"
+dev-chekc = "cargo watch --clear --quiet -x check -w src -x run"
+build = "cargo build --release && cp -r target/release/scripts ./bin"
+
+[dependencies]
+tokio = { version = "1.20.1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.83"
+mime_guess = "2.0.4"
+aws-config = "0.47.0"
+aws-sdk-s3 = "0.17.0"
+
+[dev-dependencies]
+cargo-watch = "8.1.2"
+cargo-run-script = "0.1.0"
