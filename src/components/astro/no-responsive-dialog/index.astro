@@ -1,9 +1,6 @@
 ---
 import DownloadButton from '../download-button/index.astro'
 
-import wavingHandSvg from '../../../../public/icons/waving-hand.svg'
-import resumeDocFile from '../../../../public/docs/espinoza-leonel-cv-es.pdf'
-
 const paragraphs = [
   'Dime Leo 🤓 lamento informarte que el sitio se encuentra siendo desarrollado para este tamaño de pantalla.',
   'Sin embargo, te invito a abrir este mismo sitio en un ordenador para <strong>vivir la experiencia completa</strong> ✨',
@@ -19,7 +16,7 @@ const paragraphs = [
 			En Construcción
 			<span class="block xs:inline">🚧</span>
 		</h1>
-		<img class="animate-wave w-14 h-14 m-auto" src={wavingHandSvg} alt="¡Hola!">
+		<img class="animate-wave w-14 h-14 m-auto" src="/icons/waving-hand.svg" alt="¡Hola!">
 		<div class="overflow-auto scroll-shadows max-h-[85vw] sm:max-h-[none]">
 			{
 				paragraphs.map(paragraph => (
@@ -28,7 +25,7 @@ const paragraphs = [
 			}
 		</div>
 		<footer class="mt-6 xs:mt-8">
-			<DownloadButton downloadUrl={resumeDocFile} label="Descargar Curriculum" />
+			<DownloadButton downloadUrl="/docs/espinoza-leonel-cv-es.pdf" label="Descargar Curriculum" />
 			<p class="text-sm italic mt-2 text-center xs:text-right">
 				🍀 Que tengas un excelente día 🍀
 			</p>

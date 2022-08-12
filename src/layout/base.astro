@@ -2,12 +2,10 @@
 import NetworkLoader from '../components/astro/network-loader/index.astro'
 import ParticlesBg from '../components/astro/particles-bg/index.astro'
 
-import openGraphImage from '../../public/images/open-graph.jpg'
-
 const TITLE = 'Leonel Espinoza Sotelo | Desarrollador Web, Mobile, Services'
 const DESCRIPTION = 'Desarrollo de aplicaciones y/o servicios mediante tecnologías modernas. Javascript | Typescript | Node Js | Rust | Flutter | AWS'
 const URL = 'https://leonel-espinoza.tiiny.site';
-
+const OG_IMAGE = '/images/open-graph.jpg';
 ---
 
 <html lang="es">
@@ -25,13 +23,13 @@ const URL = 'https://leonel-espinoza.tiiny.site';
 	<meta name="twitter:url" content={URL}>
 	<meta name="twitter:title" content={TITLE}>
 	<meta name="twitter:description" content={DESCRIPTION}>
-	<meta name="twitter:image" content={openGraphImage}>
+	<meta name="twitter:image" content={OG_IMAGE}>
 
 	<meta property="fb:app_id" content="123456789">
 	<meta property="og:url" content={URL}>
 	<meta property="og:type" content="website">
 	<meta property="og:title" content={TITLE}>
-	<meta property="og:image" content={openGraphImage}>
+	<meta property="og:image" content={OG_IMAGE}>
 	<meta property="og:description" content={DESCRIPTION}>
 	<meta property="og:site_name" content="Portafolio Leonel Espinoza">
 	<meta property="og:locale" content="es_CL">
