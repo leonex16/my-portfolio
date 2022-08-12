@@ -13,6 +13,7 @@
   $: SOURCES_LEN = sources.length;
 
   const resetProgressBar = (progressBarRef: HTMLDivElement) => {
+    if ( progressBarRef === null ) return;
     progressBarRef.style.transitionDuration = '';
     progressBarRef.style.width = '0%';
   };
@@ -145,6 +146,7 @@
   videoSourcesStore.subscribe((sourcesStore) => {
     sources = sourcesStore;
     videoPlayingIndexStore.set(0);
+    resetProgressBars(sourcesStore);
   });
 </script>
 
