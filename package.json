@@ -8,6 +8,7 @@
     "start": "astro preview",
     "build": "astro build",
     "test": "playwright test",
+    "test:dev": "DEV=1 playwright test",
     "eslint": "eslint --ext .js,.ts,.astro,.svelte --fix --fix-type problem,suggestion,layout ./src/"
   },
   "devDependencies": {
