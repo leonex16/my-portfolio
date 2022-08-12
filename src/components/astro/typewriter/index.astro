@@ -16,9 +16,9 @@ document.onreadystatechange = function () {
       autoStart: true,
       loop: true
     }).start()
-    document.querySelector('.Typewriter__wrapper').classList.add('text-blue-500')
+    document.querySelector('.Typewriter__wrapper').className += ' bg-gradient-to-l from-blue-500 to-blue-600 bg-clip-text text-transparent';
   }
 }
 </script>
 
-<span id={typewriterId} class="text-blue-500" ></span>
+<span id={typewriterId}></span>
