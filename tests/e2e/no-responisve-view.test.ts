@@ -7,8 +7,8 @@ test.describe('No responisve dialog', () => {
     await page.goto('/')
   })
 
-  test('should be the title "En Contrucción" on page load', async ({ page }) => {
-    const errorMsgExpected = '"En Contrucción" title expected on load page'
+  test('should be the title "En Construcción" on page load', async ({ page }) => {
+    const errorMsgExpected = '"En Construcción" title expected on load page'
 
     await expect(page.locator('text=En Construcción'), errorMsgExpected).toBeVisible()
   })
