@@ -5,13 +5,13 @@
 @font-face {
   font-family: "Montserrat";
 	font-weight: 500;
-  src: url('../../public/fonts/montserrat/medium.ttf');
+  src: url('fonts/montserrat/medium.ttf');
 }
 
 @font-face {
   font-family: "Montserrat";
 	font-weight: 700;
-  src: url('../../public/fonts/montserrat/bold.ttf');
+  src: url('fonts/montserrat/bold.ttf');
 }
 
 :root {
