@@ -1,6 +1,53 @@
 import type { PlaywrightTestConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
 
+const devRunning = Boolean(process.env.DEV)
+const projects = [
+  {
+    name: 'Chrome 1280x720',
+    use: {
+      ...devices['Desktop Chrome'],
+      viewport: { width: 1280, height: 720 } // HD
+    }
+  },
+  {
+    name: 'Chrome 1024x768',
+    use: {
+      ...devices['Desktop Chrome'],
+      viewport: { width: 1024, height: 768 } // XGA
+    }
+  },
+  {
+    name: 'Chrome 414×896',
+    use: {
+      ...devices['Galaxy S9+'],
+      viewport: { width: 414, height: 896 }
+    }
+  },
+  {
+    name: 'Chrome 280x653',
+    use: {
+      ...devices['Pixel 2'],
+      viewport: { width: 280, height: 653 }
+    }
+  }
+]
+const projectsDev = [
+  {
+    name: 'Chrome 1366x768',
+    use: {
+      ...devices['Desktop Chrome'],
+      viewport: { width: 1366, height: 768 } // WXGA
+    }
+  },
+  {
+    name: 'Chrome 360×800',
+    use: {
+      ...devices['iPhone 11'],
+      viewport: { width: 360, height: 800 }
+    }
+  }
+]
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -41,54 +88,11 @@ const config: PlaywrightTestConfig = {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
 
-    headless: true
+    headless: !devRunning
   },
 
   /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'Chrome 1366x768',
-      use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1366, height: 768 } // WXGA
-      }
-    },
-    {
-      name: 'Chrome 1280x720',
-      use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1280, height: 720 } // HD
-      }
-    },
-    {
-      name: 'Chrome 1024x768',
-      use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1024, height: 768 } // XGA
-      }
-    },
-    {
-      name: 'Chrome 360×800',
-      use: {
-        ...devices['iPhone 11'],
-        viewport: { width: 360, height: 800 }
-      }
-    },
-    {
-      name: 'Chrome 414×896',
-      use: {
-        ...devices['Galaxy S9+'],
-        viewport: { width: 414, height: 896 }
-      }
-    },
-    {
-      name: 'Chrome 280x653',
-      use: {
-        ...devices['Pixel 2'],
-        viewport: { width: 280, height: 653 }
-      }
-    }
-  ],
+  projects: devRunning ? projectsDev : [...projects, ...projectsDev],
 
   /* Run your local dev server before starting the tests */
   webServer: {
