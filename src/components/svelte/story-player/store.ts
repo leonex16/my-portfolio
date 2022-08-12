@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { writable } from 'svelte/store'
 
-import stories from '../../../data/story-player-stories.json'
+import stories from '../../../../public/data/story-player-stories.json'
 
 export const isMutedAudioStore = writable(true)
 export const isVideoPlayingStore = writable(true)

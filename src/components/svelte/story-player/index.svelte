@@ -8,7 +8,7 @@
   import Story from './components/story.svelte';
   import Video from './components/video.svelte';
 
-  import storiesData from '../../../data/story-player-stories.json';
+  import storiesData from '../../../../public/data/story-player-stories.json'
 
   let [_, ...stories] = storiesData;
 </script>
